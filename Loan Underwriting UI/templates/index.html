@@ -1,0 +1,145 @@
+<html>
+   <style>
+
+.wrapper  {
+  background-color: #fff;
+  padding: 5%;
+  border-radius: 5px;
+  /* width: 360px; */
+  max-width: 100%;
+  margin: 50px auto;
+  align-self: center;
+  box-sizing: border-box;
+}
+    .input-file-container {
+  position: relative;
+  width: 225px;
+  padding-bottom: 5%;
+} 
+.js .input-file-trigger {
+  display: block;
+  padding: 14px 45px;
+  background: #39D2B4;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495E;
+  color: #39D2B4;
+}
+
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* Useless styles, just for demo styles */
+
+body {
+  font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
+  color: #363940;
+    background-color: #227968;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+}
+h1, h2 {
+  margin-bottom: 5px;
+  font-weight: normal;
+  text-align: center;
+  color: #363940;
+}
+h2 {
+  margin: 5px 0 2em;
+  color: #1ABC9C;
+}
+form {
+  width: 225px;
+  margin: 0 auto;
+  text-align:center;
+  padding: 10%;
+}
+h2 + P {
+  text-align: center;
+}
+.txtcenter {
+  margin-top: 4em;
+  font-size: .9em;
+  text-align: center;
+  color: #aaa;
+}
+.copy {
+  margin-top: 2em;
+}
+.copy a {
+  text-decoration: none;
+  color: #1ABC9C;
+}
+   </style>
+   <body>
+      <div class="wrapper">
+      <div class="heading1">
+         <h1>Loan Underwriting Prediction System</h1>
+      </div>
+      
+      <form action = "http://localhost:5000/result" method = "POST" enctype = "multipart/form-data">
+        <div class="input-file-container">  
+          <input class="input-file" id="my-file" type="file" name="file">
+          <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+        </div>
+        <p class="file-return"></p>
+        <div class="input-file-container" style="padding-top: 10%;">  
+         <input class="input-file" id="submit" type="submit" >
+         <label tabindex="0" for="submit" class="input-file-trigger" style="background-color: #135649;">Submit</label>
+       </div>
+        <!-- <input type = "submit"/> -->
+      </form>
+      </div>
+   </body>
+   <script>
+      document.querySelector("html").classList.add('js');
+
+var fileInput  = document.querySelector( ".input-file" ),  
+    button     = document.querySelector( ".input-file-trigger" ),
+    the_return = document.querySelector(".file-return");
+      
+button.addEventListener( "keydown", function( event ) {  
+    if ( event.keyCode == 13 || event.keyCode == 32 ) {  
+        fileInput.focus();  
+    }  
+});
+button.addEventListener( "click", function( event ) {
+   fileInput.focus();
+   return false;
+});  
+fileInput.addEventListener( "change", function( event ) {  
+    the_return.innerHTML = this.value;  
+});  
+   </script>
+</html>
